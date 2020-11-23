@@ -1,50 +1,22 @@
 <script>
-  // import Datos from './Datos.svelte';
-  import Buttom from './Buttom.svelte';
 
-  export let name = "emarcia";
+  import Triple from './Triple.svelte';
+  let numero = 0;
 
-  let disable = true;
+  function handleclick() {
+    numero += 1;
+  }
 
-  // let nombreCompleto = {
-  //   nombre: 'Erick',
-  //   apellidos: 'Marcia',
-  // };
-
-  let objeto = {
-    disabled: true,
-    text: 'click',
-  };
-
-  console.log('objeto', objeto);
+  $: numeroDoble = numero * 2;
 </script>
 
+<button on:click={handleclick}>{numero}</button>
 
-<h1>Hola {name}!</h1>
-<!-- <Datos {...nombreCompleto} /> -->
+<!-- /*Reactividad es hacer que una variable reaccione en función del cambio de otra variable */ -->
+<!-- <button on:click={()=> (numero += 1)}>{numero}</button> -->
 
-<!-- /*Esto es un componente*/ -->
-<!-- <Buttom /> -->
 
-<!-- /*Esto es un action HTML*/ -->
-<!-- <button disabled>Click</button> -->
+<p>{numeroDoble} es el doble de {numero}</p>
 
-<!-- Darle valor con Javascripts -->
-<!-- <button {disable}>Click</button>
-<input type="text">
-<a href="http://github.com/{name}">{name}</a>
-<a href={`http://github.com/${name}`}>{name}</a> -->
-<!-- /*Esto es un componente*/ -->
-<!-- <Buttom /> -->
-<Buttom {...objeto} />
-{console.log('objeto', objeto)}
-{@debug objeto}
-<div>
-  <Buttom {...objeto} />
-</div>
 
-<style>
-  div :global(button) {
-    border: 1px solid red;
-  }
-</style>
+<Triple {numero} />

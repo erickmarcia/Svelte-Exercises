@@ -1,22 +1,18 @@
 <script>
 
-  import Triple from './Triple.svelte';
-  let numero = 0;
+  import Inmutable from './Inmutable.svelte';
 
-  function handleclick() {
-    numero += 1;
+  let numero = [1, 2, 3, 4];
+
+  function addNumber() {
+    numero = [...numero, numero.length + 1];
   }
 
-  $: numeroDoble = numero * 2;
+  // Variable reactiva
+  $: suma = numero.reduce((a, b) => a + b, 0)
 </script>
 
-<button on:click={handleclick}>{numero}</button>
+<p>{numero.join(' + ')}={suma}</p>
 
-<!-- /*Reactividad es hacer que una variable reaccione en función del cambio de otra variable */ -->
-<!-- <button on:click={()=> (numero += 1)}>{numero}</button> -->
-
-
-<p>{numeroDoble} es el doble de {numero}</p>
-
-
-<Triple {numero} />
+<button on:click={addNumber}>Añadir Número</button>
+<Inmutable />
